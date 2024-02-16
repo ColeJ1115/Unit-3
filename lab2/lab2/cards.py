@@ -38,7 +38,16 @@ def play_cards(left1, left2, left3, right1, right2, right3):
     right_straight = check_straight(right1, right2, right3)
     left_3ofa_kind = check_3ofa_kind(left1, left2, left3)
     right_3ofa_kind = check_3ofa_kind(right1, right2, right3)
+    left_royal_flush = check_royal_flush(left1, left2, left3)
+    right_royal_flush = check_royal_flush(right1, right2, right3)
 
+    if left_royal_flush and not right_royal_flush:
+        return -1  # Left player wins with a royal flush
+    elif right_royal_flush and not left_royal_flush:
+        return 1  # Right player wins with a royal flush
+    else:
+        # Continue with other comparison logic
+        pass
     if left_straight and right_straight:
         if left_straight > right_straight:
             return -1
